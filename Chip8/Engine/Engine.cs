@@ -1,16 +1,16 @@
-public namespace Chip8.Engine;
+namespace Chip8.Engine;
 
 public class Engine
 {
-    // Registers
-
+    public CPU CPU { get; set; }
 
     public Engine()
     {
-        
+        this.CPU = new CPU();
     }
 
     public void Run()
     {
+        this.CPU.RunProgram();
     }
 }

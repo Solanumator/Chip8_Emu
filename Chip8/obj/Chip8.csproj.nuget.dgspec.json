@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/home/connor/Documents/Chip8/Chip8/Chip8/Chip8.csproj": {}
+    "C:\\work\\Emu\\Chip8_Emu\\Chip8\\Chip8.csproj": {}
   },
   "projects": {
-    "/home/connor/Documents/Chip8/Chip8/Chip8/Chip8.csproj": {
+    "C:\\work\\Emu\\Chip8_Emu\\Chip8\\Chip8.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/connor/Documents/Chip8/Chip8/Chip8/Chip8.csproj",
+        "projectUniqueName": "C:\\work\\Emu\\Chip8_Emu\\Chip8\\Chip8.csproj",
         "projectName": "Chip8",
-        "projectPath": "/home/connor/Documents/Chip8/Chip8/Chip8/Chip8.csproj",
-        "packagesPath": "/home/connor/.nuget/packages/",
-        "outputPath": "/home/connor/Documents/Chip8/Chip8/Chip8/obj/",
+        "projectPath": "C:\\work\\Emu\\Chip8_Emu\\Chip8\\Chip8.csproj",
+        "packagesPath": "C:\\Users\\CONNO\\.nuget\\packages\\",
+        "outputPath": "C:\\work\\Emu\\Chip8_Emu\\Chip8\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/connor/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\CONNO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,11 +38,27 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "OpenTK": {
+              "target": "Package",
+              "version": "[4.9.3, )"
+            },
+            "Sayers.SDL2.Core": {
+              "target": "Package",
+              "version": "[1.0.11, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -53,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.112/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

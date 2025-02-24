@@ -1,0 +1,5 @@
+.vs
+Chip8/obj/**
+Chip8/bin/**
+Chip8.UI/obj/**
+Chip8.UI/bin/**
