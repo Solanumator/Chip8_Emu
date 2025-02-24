@@ -30,7 +30,6 @@ public class CPU
 
     public CPU(Form1 form)
     {
-        // TODO: Update to new graphics once that works
         this.graphics = new Graphics(form);
         Stack = new Stack<ushort>();
         this.Memory = new byte[4096];
@@ -119,7 +118,8 @@ public class CPU
     private void DrawSprite(byte X, byte Y, ushort N)
     {
         this.V[0xF] = 0;
-        var collision = this.graphics.UpdateScreen(N, this.Memory[this.I], (ushort)(this.V[X] & 64), (ushort)(this.V[Y] & 32));
+        var spriteBytes = new ArraySegment<byte>(this.Memory, this.I, this.I + N);
+        var collision = this.graphics.UpdateScreen(N, spriteBytes.ToArray(), (ushort)(this.V[X] % 64), (ushort)(this.V[Y] % 32));
         this.V[0xF] = (byte)(collision ? 0 : 1);
     }
     public void AddXNN(byte X, byte NN) => this.V[X] += NN;

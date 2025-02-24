@@ -19,23 +19,44 @@ namespace Chip8.Engine
             this.form.GameBox.Image = this.screenTexture.Bitmap;
         }
 
-        public bool UpdateScreen(ushort height, byte sprite, ushort x, ushort y)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="height">N</param>
+        /// <param name="sprite">this.Memory[this.I]</param>
+        /// <param name="x">(ushort)(this.V[X] % 64)</param>
+        /// <param name="y">(ushort)(this.V[Y] % 32)</param>
+        /// <returns></returns>
+        public bool UpdateScreen(ushort height, byte[] sprite, ushort x, ushort y)
         {
+            var desc = $"Drawing a sprite of height: {height}, sprite: {sprite}, at position {x},{y}";
+            Console.WriteLine(desc);
+
             var collision = false;
 
-            // Draw for each pixel of height
-            for (int i = 0; i < height; i++)
+            // For N rows
+            for (int spriteY = 0; spriteY < height; spriteY++)
             {
-                var Y = y + i;
+                // Nth byte of sprite data
+                var currentSprite = sprite[spriteY];
 
-                // Loop each bit in the sprite
-                for (int b = 0; b < 8; b++)
+                // For each bit in the sprite
+                for (int spriteX = 0; spriteX < 8; spriteX++)
                 {
-                    var currentScreenPixel = this.screenTexture.GetPixel(x, y);
-                    var pixelValue = sprite & (0x80 >> b);
-                    var X = x + b;
+                    // If we hit the end of the screen, continue
+                    // Its possible we'll let this wrap in future.
+                    if (x + spriteX >= WIDTH)
+                    {
+                        continue;
+                    }
 
-                    // If not 0, we flip the bit
+                    // Current Pixel Color
+                    var currentScreenPixel = this.screenTexture.GetPixel(x + spriteX, y + spriteY);
+
+                    // Get single pixel value
+                    var pixelValue = (currentSprite & (0x80 >> spriteX));
+                
+                    // Set pixel
                     if (pixelValue != 0)
                     {
                         if (currentScreenPixel.R == 0)
@@ -43,7 +64,7 @@ namespace Chip8.Engine
                             collision = true;
                         }
 
-                        this.FlipPixel(X, Y, currentScreenPixel);
+                        this.FlipPixel(x + spriteX, y + spriteY, currentScreenPixel);
                     }
                 }
             }
