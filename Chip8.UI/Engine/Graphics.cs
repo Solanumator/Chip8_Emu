@@ -20,14 +20,14 @@ namespace Chip8.Engine
         }
 
         /// <summary>
-        /// 
+        /// Draws a sprite to the screen and updates the displayed image.
         /// </summary>
-        /// <param name="height">N</param>
-        /// <param name="sprite">this.Memory[this.I]</param>
-        /// <param name="x">(ushort)(this.V[X] % 64)</param>
-        /// <param name="y">(ushort)(this.V[Y] % 32)</param>
-        /// <returns></returns>
-        public bool UpdateScreen(ushort height, byte[] sprite, ushort x, ushort y)
+        /// <param name="height">The height of the sprite to create.</param>
+        /// <param name="sprite">The bytes representing the sprite. This should equal height.</param>
+        /// <param name="x">Start X position.</param>
+        /// <param name="y">Start Y position.</param>
+        /// <returns>Whether or not we've flipped any pixel which is 'on'.</returns>
+        public bool DrawSprite(ushort height, byte[] sprite, ushort x, ushort y)
         {
             var desc = $"Drawing a sprite of height: {height}, sprite: {sprite}, at position {x},{y}";
             Console.WriteLine(desc);

@@ -7,6 +7,8 @@ public class CPU
 {
     const bool DEBUG = true;
 
+    public bool IsFileLoaded { get; private set; }
+
     // Graphics
     private Graphics graphics;
 
@@ -46,6 +48,8 @@ public class CPU
         {
             this.Memory[i + 0x200] = fileContents[i];
         }
+
+        this.IsFileLoaded = true;
     }
 
     public void RunProgram()
@@ -109,7 +113,7 @@ public class CPU
     }
 
     /// <summary>
-    /// Display N byte sprite starting at memory location I at (X,Y).
+    /// Display N byte sprite (starting at memory location I) at (X,Y).
     /// Sprites are XOR'd to screen, setting VF=1 if any pixels are erased, VF=0 otherwise.
     /// </summary>
     /// <param name="X">X Location.</param>
@@ -119,7 +123,7 @@ public class CPU
     {
         this.V[0xF] = 0;
         var spriteBytes = new ArraySegment<byte>(this.Memory, this.I, this.I + N);
-        var collision = this.graphics.UpdateScreen(N, spriteBytes.ToArray(), (ushort)(this.V[X] % 64), (ushort)(this.V[Y] % 32));
+        var collision = this.graphics.DrawSprite(N, spriteBytes.ToArray(), (ushort)(this.V[X] % 64), (ushort)(this.V[Y] % 32));
         this.V[0xF] = (byte)(collision ? 0 : 1);
     }
     public void AddXNN(byte X, byte NN) => this.V[X] += NN;

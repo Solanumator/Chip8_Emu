@@ -28,7 +28,17 @@ namespace Chip8.UI
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.engine.Start();
+            openFileDialog1.Filter = "Chip8 Roms|*.ch8";
+            openFileDialog1.FileName = string.Empty;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                this.engine.LoadRom(openFileDialog1.FileName);
+            }
+
+            if (!this.engine.Start())
+            {
+                MessageBox.Show("Rom is not loaded", "Not Loaded", MessageBoxButtons.OK);
+            }
         }
     }
 }

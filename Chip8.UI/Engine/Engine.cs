@@ -14,12 +14,23 @@ public class Engine
         this.CPU = new CPU(form);
     }
 
-    public void Start()
+    public void LoadRom(string path)
     {
+        this.CPU.LoadProgram(path);
+    }
+
+    public bool Start()
+    {
+        if (!this.CPU.IsFileLoaded)
+        {
+            return false;
+        }
+
         this.CPU.LoadProgram(@"C:\work\Emu\chip8_roms\roms\IBM Logo.ch8");
 
         // TODO: Implement this with interrupts and such
         Task t = Task.Factory.StartNew(Run, TaskCreationOptions.LongRunning);
+        return true;
     }
 
     private void Run()

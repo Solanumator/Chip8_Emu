@@ -32,6 +32,7 @@
             menuStrip1 = new MenuStrip();
             menuToolStripMenuItem = new ToolStripMenuItem();
             startToolStripMenuItem = new ToolStripMenuItem();
+            openFileDialog1 = new OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -65,9 +66,13 @@
             // startToolStripMenuItem
             // 
             startToolStripMenuItem.Name = "startToolStripMenuItem";
-            startToolStripMenuItem.Size = new Size(98, 22);
-            startToolStripMenuItem.Text = "Start";
+            startToolStripMenuItem.Size = new Size(180, 22);
+            startToolStripMenuItem.Text = "Load Rom..";
             startToolStripMenuItem.Click += startToolStripMenuItem_Click;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -93,5 +98,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menuToolStripMenuItem;
         private ToolStripMenuItem startToolStripMenuItem;
+        private OpenFileDialog openFileDialog1;
     }
 }
