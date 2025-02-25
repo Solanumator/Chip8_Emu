@@ -37,7 +37,7 @@ namespace Chip8.UI
 
             if (!this.engine.Start())
             {
-                MessageBox.Show("Rom is not loaded", "Not Loaded", MessageBoxButtons.OK);
+                MessageBox.Show("No rom loaded", "Warning", MessageBoxButtons.OK);
             }
         }
     }
